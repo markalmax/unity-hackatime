@@ -124,6 +124,7 @@ namespace WakaTime {
       public string branch;
       public string plugin;
       public string language;
+      public string editor;
       public bool is_write;
       public bool is_debugging;
 
@@ -135,6 +136,7 @@ namespace WakaTime {
         plugin = "unity-hackatime";
         branch = "main";
         language = "unity";
+        editor = "Unity " + Application.unityVersion;
         is_write = save;
         is_debugging = _debug;
       }
