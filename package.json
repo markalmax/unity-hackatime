@@ -1,16 +1,14 @@
 {
-	"name": "com.hackclub.unity-hackatime",
-	"displayName":"unity-hackatime",
-	"version": "0.1.0",
-	"unity": "6000.3",
-	"unityRelease": "10f1",
-	"description": "Hackatime plugin for Unity",
-	"dependencies": {
-		"com.unity.test-framework": "1.6.0"
-	},
-	"author": {
-		"name": "Hack Club",
-		"url": "https://hackclub.com",
-		"email": "team@hackclub.com"
-	}
+  "name": "com.hackclub.unity-hackatime",
+  "displayName": "unity-hackatime",
+  "version": "0.1.0",
+  "description": "Hackatime plugin for Unity",
+  "dependencies": {
+    "com.unity.test-framework": "1.6.0"
+  },
+  "author": {
+    "name": "Hack Club",
+    "url": "https://hackclub.com",
+    "email": "team@hackclub.com"
+  }
 }
