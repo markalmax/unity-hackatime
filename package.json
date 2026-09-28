@@ -1,0 +1,16 @@
+{
+	"name": "com.hackclub.unity-hackatime",
+	"displayName":"unity-hackatime",
+	"version": "0.1.0",
+	"unity": "6000.3",
+	"unityRelease": "10f1",
+	"description": "Replace this with your own description of the package. \n\nFor best results, use this text to summarize: \n\u25AA What the package does \n\u25AA How it can benefit the user \n\nNote: Special formatting characters are supported, including line breaks ('\\n') and bullets ('\\u25AA').",
+	"dependencies": {
+		"com.unity.test-framework": "1.6.0"
+	},
+	"author": {
+		"name": "Hack Club",
+		"url": "https://hackclub.com",
+		"email": "team@hackclub.com"
+	}
+}

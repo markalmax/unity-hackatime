@@ -1,0 +1,10 @@
+{
+    "name": "Markalmax782.Unityhackatime.Editor",
+    "references": [
+      "Markalmax782.Unityhackatime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

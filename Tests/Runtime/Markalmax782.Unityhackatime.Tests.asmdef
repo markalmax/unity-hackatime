@@ -1,0 +1,11 @@
+{
+    "name": "Markalmax782.Unityhackatime.Tests",
+    "references": [
+        "Markalmax782.Unityhackatime"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
