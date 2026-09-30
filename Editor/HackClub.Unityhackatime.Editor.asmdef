@@ -1,9 +1,7 @@
 {
     "name": "hackclub.Unityhackatime.Editor",
     "rootNamespace": "",
-    "references": [
-        "hackclub.Unityhackatime"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

@@ -123,6 +123,8 @@ namespace HackClub.Unityhackatime.Editor {
       public string plugin;
       public string language;
       public bool is_write;
+      public int lineno;
+      public int cursorpos;
       public bool is_debugging;
 
       public Heartbeat(string file, bool save = false) {
@@ -134,6 +136,9 @@ namespace HackClub.Unityhackatime.Editor {
         branch = "main";
         language = "unity";
         is_write = save;
+        var currentEvent = Event.current;
+        lineno = currentEvent == null ? 0 : Mathf.RoundToInt(currentEvent.mousePosition.y);
+        cursorpos = currentEvent == null ? 0 : Mathf.RoundToInt(currentEvent.mousePosition.x);
         is_debugging = _debug;
       }
     }
