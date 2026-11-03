@@ -112,16 +112,15 @@ namespace HackClub.Unityhackatime.Editor {
       public Heartbeat(string file, bool save = false) {
         entity = file == string.Empty ? "Unsaved Scene" : file;
         type = "file";
-        catagory = "building";
+        catagory = Application.isPlaying&&Application.isEditor ? "Debugging" : "Building";
         time = (float) DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
         project = ProjectName;
         plugin = "unity-hackatime";
         branch = "main";
         language = "unity";
         is_write = save;
-        var currentEvent = Event.current;
-        lineno = currentEvent == null ? 0 : Mathf.RoundToInt(currentEvent.mousePosition.y);
-        cursorpos = currentEvent == null ? 0 : Mathf.RoundToInt(currentEvent.mousePosition.x);
+        lineno = 0;
+        cursorpos = 0;
       }
     }
 
