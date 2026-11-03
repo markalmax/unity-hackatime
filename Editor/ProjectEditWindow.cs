@@ -3,10 +3,6 @@ using UnityEditor;
 using UnityEngine;
 
 namespace HackClub.Unityhackatime.Editor {
-  /// <summary>
-  /// Popup window for editing .wakatime-project file
-  /// <seealso cref="https://wakatime.com/faq#rename-projects"/>
-  /// </summary>
   public class ProjectEditWindow : EditorWindow {
     private static ProjectEditWindow _window;
 
@@ -28,7 +24,7 @@ namespace HackClub.Unityhackatime.Editor {
         _window.ShowPopup();
       }
 
-      // We need only first 2 lines from .wakatime-project
+      // We need only first 2 lines from .hackatime-project
       _projectSettings = new[] {"", ""};
       var projectFile = Plugin.GetProjectFile();
 
@@ -60,7 +56,7 @@ namespace HackClub.Unityhackatime.Editor {
       }
       EditorGUILayout.EndHorizontal();
       EditorGUILayout.LabelField(
-        "A project name to send to WakaTime (Product Name from Player Settings by default)", RichHelpBoxStyle);
+        "A project name to send to HackaTime (Product Name from Player Settings by default)", RichHelpBoxStyle);
 
       EditorGUILayout.BeginHorizontal(); {
         EditorGUILayout.PrefixLabel("Branch");
@@ -69,11 +65,11 @@ namespace HackClub.Unityhackatime.Editor {
       }
       EditorGUILayout.EndHorizontal();
       EditorGUILayout.LabelField(
-        "A branch name to send to WakaTime (current git branch by default) <i>(not implemented in this plugin yet)</i>",
+        "A branch name to send to HackaTime (current git branch by default) <i>(not implemented in this plugin yet)</i>",
         RichHelpBoxStyle);
 
       if (_isProjectFileMissed)
-        GUILayout.Label($"<b>{Path.GetFullPath(".wakatime_project")}</b> will be created on save",
+        GUILayout.Label($"<b>{Path.GetFullPath(".hackatime-project")}</b> will be created on save",
           RichHelpBoxStyle);
       EditorGUILayout.BeginHorizontal(); {
         if (GUILayout.Button("Save")) {

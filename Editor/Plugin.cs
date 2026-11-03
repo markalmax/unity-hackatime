@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 namespace HackClub.Unityhackatime.Editor {
   [InitializeOnLoad]
   public class Plugin {
-    public const string API_KEY_PREF = "WakaTime/APIKey";
-    public const string API_URL_PREF = "WakaTime/APIUrl";
-    public const string ENABLED_PREF = "WakaTime/Enabled";
-    public const string DEBUG_PREF = "WakaTime/Debug";
-    public const string WAKATIME_PROJECT_FILE = ".wakatime-project";
+    public const string API_KEY_PREF = "HackaTime/APIKey";
+    public const string API_URL_PREF = "HackaTime/APIUrl";
+    public const string ENABLED_PREF = "HackaTime/Enabled";
+    public const string DEBUG_PREF = "HackaTime/Debug";
+    public const string HACKATIME_PROJECT_FILE = ".hackatime-project";
 
     public static string ProjectName { get; private set; }
 
@@ -24,7 +24,6 @@ namespace HackClub.Unityhackatime.Editor {
     private static bool _enabled = true;
     private static bool _debug = true;
 
-    private const string URL_PREFIX = "https://hackatime.hackclub.com/api/hackatime/v1/";
     private const int HEARTBEAT_COOLDOWN = 5;
     private const float MIN_HEARTBEAT_INTERVAL_SECONDS = 5f;
 
@@ -77,27 +76,11 @@ namespace HackClub.Unityhackatime.Editor {
       LinkCallbacks();
     }
 
-    /// <summary>
-    /// Reads .wakatime-project file
-    /// <seealso cref="https://wakatime.com/faq#rename-projects"/>
-    /// </summary>
-    /// <returns>Lines of .wakatime-project or null if file not found</returns>
     public static string[] GetProjectFile() =>
-      !File.Exists(WAKATIME_PROJECT_FILE) ? null : File.ReadAllLines(WAKATIME_PROJECT_FILE);
+      !File.Exists(HACKATIME_PROJECT_FILE) ? null : File.ReadAllLines(HACKATIME_PROJECT_FILE);
 
-    /// <summary>
-    /// Rewrites o creates new .wakatime-project file with given lines
-    /// <seealso cref="https://wakatime.com/faq#rename-projects"/>
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// project-override-name
-    /// branch-override-name
-    /// </code>
-    /// </example>
-    /// <param name="content"></param>
     public static void SetProjectFile(string[] content) {
-      File.WriteAllLines(WAKATIME_PROJECT_FILE, content);
+      File.WriteAllLines(HACKATIME_PROJECT_FILE, content);
     }
 
     [Serializable]
@@ -117,6 +100,7 @@ namespace HackClub.Unityhackatime.Editor {
     struct Heartbeat {
       public string entity;
       public string type;
+      public string catagory;
       public float time;
       public string project;
       public string branch;
@@ -125,11 +109,10 @@ namespace HackClub.Unityhackatime.Editor {
       public bool is_write;
       public int lineno;
       public int cursorpos;
-      public bool is_debugging;
-
       public Heartbeat(string file, bool save = false) {
         entity = file == string.Empty ? "Unsaved Scene" : file;
         type = "file";
+        catagory = "building";
         time = (float) DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
         project = ProjectName;
         plugin = "unity-hackatime";
@@ -139,7 +122,6 @@ namespace HackClub.Unityhackatime.Editor {
         var currentEvent = Event.current;
         lineno = currentEvent == null ? 0 : Mathf.RoundToInt(currentEvent.mousePosition.y);
         cursorpos = currentEvent == null ? 0 : Mathf.RoundToInt(currentEvent.mousePosition.x);
-        is_debugging = _debug;
       }
     }
 
@@ -280,13 +262,9 @@ namespace HackClub.Unityhackatime.Editor {
       EditorSceneManager.newSceneCreated += OnSceneCreated;
     }
 
-    /// <summary>
-    /// Project name for sending <see cref="Heartbeat"/>
-    /// </summary>
-    /// <returns><see cref="Application.productName"/> or first line of .wakatime-project</returns>
     private static string GetProjectName() =>
-      File.Exists(WAKATIME_PROJECT_FILE)
-        ? File.ReadAllLines(WAKATIME_PROJECT_FILE)[0]
+      File.Exists(HACKATIME_PROJECT_FILE)
+        ? File.ReadAllLines(HACKATIME_PROJECT_FILE)[0]
         : Application.productName;
   }
 }
